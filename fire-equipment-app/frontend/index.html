@@ -10,19 +10,54 @@
     <header>
         <h1>Fire Equipment Checklist</h1>
         <nav>
-            <button id="loadDailyBtn">Daily Check</button>
-            <button id="loadWeeklyBtn">Weekly Check</button>
-            <button id="loadMonthlyBtn">Monthly Check</button>
-            <button id="viewPastChecklistsBtn">View Past Checklists</button>
-            <!-- Login/Logout buttons would go here eventually -->
+            <button id="loadDailyBtn" style="display:none;">Daily Check</button>
+            <button id="loadWeeklyBtn" style="display:none;">Weekly Check</button>
+            <button id="loadMonthlyBtn" style="display:none;">Monthly Check</button>
+            <button id="viewPastChecklistsBtn" style="display:none;">View Past Checklists</button>
         </nav>
+        <div id="user-status" style="display:none;">
+            Logged in as: <span id="loggedInUsername"></span> 
+            <button id="logoutBtn">Logout</button>
+        </div>
     </header>
 
     <main>
         <section id="initial-view">
-            <h2>Welcome!</h2>
-            <p>Select an action from the navigation above.</p>
-            <!-- This area can also be used for login form later -->
+            <!-- Login Form Container -->
+            <div id="login-form-container">
+                <h2>Login</h2>
+                <form id="login-form">
+                    <div>
+                        <label for="login-username">Username:</label>
+                        <input type="text" id="login-username" name="username" required>
+                    </div>
+                    <div>
+                        <label for="login-password">Password:</label>
+                        <input type="password" id="login-password" name="password" required>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+                <p>Need an account? <button id="show-register-form-btn" type="button">Register here</button></p>
+                <div id="login-message" class="auth-message"></div>
+            </div>
+
+            <!-- Registration Form Container (initially hidden) -->
+            <div id="register-form-container" style="display:none;">
+                <h2>Register</h2>
+                <form id="register-form">
+                    <div>
+                        <label for="register-username">Username:</label>
+                        <input type="text" id="register-username" name="username" required>
+                    </div>
+                    <div>
+                        <label for="register-password">Password:</label>
+                        <input type="password" id="register-password" name="password" required>
+                    </div>
+                    <button type="submit">Register</button>
+                </form>
+                <p>Already have an account? <button id="show-login-form-btn" type="button">Login here</button></p>
+                <div id="register-message" class="auth-message"></div>
+            </div>
         </section>
 
         <section id="checklist-selection-view" style="display:none;">
@@ -42,15 +77,14 @@
             <div id="past-checklist-detail-area"></div>
         </section>
 
-         <!-- Modal or dedicated area for item history when starting a new check -->
-         <div id="item-history-modal" class="modal" style="display:none;">
-             <div class="modal-content">
-                 <span class="close-btn">&times;</span> <!-- JS will attach event -->
-                 <h3>History for <span id="history-item-name"></span></h3>
-                 <ul id="history-item-list"></ul>
-             </div>
-         </div>
-
+        <!-- Modal or dedicated area for item history when starting a new check -->
+        <div id="item-history-modal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close-btn" onclick="document.getElementById('item-history-modal').style.display='none'">&times;</span>
+                <h3>History for <span id="history-item-name"></span></h3>
+                <ul id="history-item-list"></ul>
+            </div>
+        </div>
     </main>
 
     <footer>
