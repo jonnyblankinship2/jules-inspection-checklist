@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Fire Equipment Checklist</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Admin Panel</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                <li><a href="{{ url_for('api.create_equipment') }}">Create Equipment</a></li>
+                <li><a href="{{ url_for('api.get_all_equipment') }}">View Equipment</a></li>
+                <li><a href="{{ url_for('api.create_checklist_template') }}">Create Checklist Template</a></li>
+                <li><a href="{{ url_for('api.get_all_checklist_templates') }}">View Checklist Templates</a></li>
+                <li><a href="{{ url_for('api.submit_checklist') }}">Submit Checklist</a></li>
+                <li><a href="{{ url_for('api.get_user_checklists') }}">View My Checklists</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <p>Welcome to the admin panel. Here you can manage equipment and checklist templates.</p>
+    </main>
+    <footer>
+        <p>&copy; 2023 Fire Department</p>
+    </footer>
+</body>
+</html>

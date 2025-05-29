@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Equipment Checklist</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Fire Equipment Checklist</h1>
+        <nav>
+            <button id="loadDailyBtn">Daily Check</button>
+            <button id="loadWeeklyBtn">Weekly Check</button>
+            <button id="loadMonthlyBtn">Monthly Check</button>
+            <button id="viewPastChecklistsBtn">View Past Checklists</button>
+            <!-- Login/Logout buttons would go here eventually -->
+        </nav>
+    </header>
+
+    <main>
+        <section id="initial-view">
+            <h2>Welcome!</h2>
+            <p>Select an action from the navigation above.</p>
+            <!-- This area can also be used for login form later -->
+        </section>
+
+        <section id="checklist-selection-view" style="display:none;">
+            <div id="template-selection-area">
+                <h3>Available Templates for <span id="selected-checklist-type"></span></h3>
+                <ul id="template-list"></ul>
+            </div>
+            <div id="current-checklist-area">
+                <!-- Checklist items will be rendered here -->
+            </div>
+            <button id="submit-checklist-btn" style="display:none;">Submit Checklist</button>
+        </section>
+        
+        <section id="past-checklists-view" style="display:none;">
+            <h2>My Past Checklists</h2>
+            <ul id="past-checklists-list"></ul>
+            <div id="past-checklist-detail-area"></div>
+        </section>
+
+         <!-- Modal or dedicated area for item history when starting a new check -->
+         <div id="item-history-modal" class="modal" style="display:none;">
+             <div class="modal-content">
+                 <span class="close-btn">&times;</span> <!-- JS will attach event -->
+                 <h3>History for <span id="history-item-name"></span></h3>
+                 <ul id="history-item-list"></ul>
+             </div>
+         </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Fire Department</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

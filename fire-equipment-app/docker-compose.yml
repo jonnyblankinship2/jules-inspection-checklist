@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000" # Map host port 8000 to container port 8000 (where Flask/Gunicorn runs)
+    volumes:
+      - ./backend:/app # Mount backend code for development (optional for prod-like build)
+    env_file:
+      - ./backend/.flaskenv # Load environment variables from .flaskenv
+    environment:
+      # For Docker Compose, DATABASE_URL should use the service name 'db'
+      # This overrides the value in .flaskenv if it's set to localhost
+      DATABASE_URL: "postgresql://testuser:testpass@db:5432/fire_checklist_app_db"
+      LC_ALL: C.UTF-8 
+      LANG: C.UTF-8
+      # Ensure FLASK_APP and FLASK_ENV are also set here if not reliably picked from .flaskenv by the CMD
+      FLASK_APP: run.py 
+      FLASK_ENV: development 
+    depends_on:
+      - db # Ensure db service starts before backend
+
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/ # Persist data
+    ports:
+      - "5432:5432" # Map host port 5432 to container port 5432 (optional, for external access)
+    environment:
+      POSTGRES_USER: testuser        # Matches the user in DATABASE_URL
+      POSTGRES_PASSWORD: testpass    # Matches the password in DATABASE_URL
+      POSTGRES_DB: fire_checklist_app_db # Matches the database name in DATABASE_URL
+
+volumes:
+  postgres_data: # Defines the named volume for data persistence
